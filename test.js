@@ -196,7 +196,6 @@ function draw() {
   }
   else if (scene === 3) washDish();
   else if (scene === 4) awayGarbage();
-  else if (scene === 5) drawSunlightEnding();
   else if (scene === 6) drawAngryapart();
   else if (scene === 4.5) drawHappyapart();
   else if (scene === 7) cleanClothes();
@@ -207,6 +206,7 @@ function endingCredits() {
   push();
   fill(255);
   background(0);
+  textSize(20)
   // 텍스트 간 간격
   let spacing = 40;
 
@@ -224,14 +224,13 @@ function keyPressed() {
   if (key === 'n' || key === 'N') {
     scene = 4.5;
   }
-  if (key === 'm' || key === 'M') {
-    scene = 5;
-  }
+
+
   if (key === 's' || key === 'S') {
     scene = 6;
     textDisable = 1;
   }
-  if(scene == 5 && key === 'p' || key ==='P'){
+  if(scene == 4.5 && key === 'p' || key ==='P'){
     scene = 8;
   }
   if (keyCode === LEFT_ARROW) {
@@ -439,33 +438,7 @@ class Fly {
   }
 }
 
-function drawSunlightEnding() {
-  // 화면 밝아지는 효과
-  let bright = map(sin(frameCount * 0.02), -1, 1, 200, 255);
-  background(bright, bright * 0.95, bright * 0.8);  // 따뜻한 색상
 
-  // 햇살 효과
-  noStroke();
-  for (let i = 0; i < 20; i++) {
-    let alpha = 50 + 50 * sin(frameCount * 0.01 + i);
-    fill(255, 255, 200, alpha);
-    let radius = 200 + 10 * i + 5 * sin(frameCount * 0.03 + i);
-    ellipse(width / 2, height / 2, radius, radius);
-  }
-
-  // 메시지
-  fill(80, 40, 20);
-  textSize(32);
-  text("청소를 미루지 않고, 재때재때 하면 \n\n나는 물론 모두가 행복해질거야!", width / 2, height / 2);
-  push();
-  stroke(0);
-  fill(255);
-  rect(10, 10, 80, 40, 10);
-  fill(0);
-  textSize(16);
-  text("p을 눌러\n 크레딧보기", 50, 30); 
-  pop(); 
-}
 
 
 //파리 다 채워지면 빌라에서 이웃들이 화내는 코드
@@ -508,7 +481,7 @@ function drawHappyapart(){
   rect(10, 10, 80, 40, 10);
   fill(0);
   textSize(16);
-  text("m을 눌러\n 엔딩보기", 50, 30);  
+  text("p를 눌러\n 엔딩보기", 50, 30);  
   pop();
 }
 
